@@ -13,44 +13,6 @@ from mpl_toolkits import mplot3d
 from multilateration_algorithms import *
 import time
 
-def cil2car(r, theta, z):
-    ''' 
-    changes from cylindrical coordinates to Cartesian coordinates
-    obs: theta in radians
-    '''
-    x = r*np.cos(theta)
-    y = r*np.sin(theta)
-    return np.array([x, y, z])
-
-def car2sph(x, y, z):
-    ''' 
-    changes from Cartesian coordinates to spherical coordinates
-    obs: theta, phi in degrees
-    '''
-    if ((x, y, z) == (0, 0, 0)): return np.zeros(3)
-    epsilon = 1e-17 # avoid division by zero
-    
-    R = np.sqrt(x**2 + y**2 + z**2)
-    theta_rad = np.arctan(y/(x + epsilon))
-    phi_rad = np.arccos(z/(R + epsilon))
-    
-    theta = (theta_rad/(2*np.pi)) * 360 
-    phi = (phi_rad/(2*np.pi)) * 360
-    return np.array([R, theta, phi])
-
-def sph2car(R, phi, theta):
-    ''' 
-    changes from spherical coordinates to Cartesian coordinates
-    R : radius
-    phi : azimuth angle in radians
-    theta : elevation angle in radians
-    
-    return ndarray with x,y,z Cartesian coordinates
-    '''
-    x = R*np.sin(theta)*np.cos(phi)
-    y = R*np.sin(theta)*np.sin(phi)
-    z = R*np.cos(theta)
-    return np.array([x, y, z])
 
 # generate cilindrical sources cloud
 r = np.linspace(1, 15, 15) # r is in [1,15] with steps of 1
@@ -140,7 +102,10 @@ for (R, phi, theta) in semi_sphere:
     #source = np.array([R, phi, theta])
 
     rand = (2*np.random.rand(samples) - 1) # Random vector between 1 and -1    
+    #a=time.time()
     delays, _ = delayEstimator (rand, sampleRate, source, square_array, m, e, typeComb = "")
+    #b=time.time()
+    #print(b-a)
     result = MLE_HLS(square_array, delays, sampleRate)
     sph_source = car2sph(source[0], source[1], source[2])
     sph_result = car2sph(result[0], result[1], result[2])

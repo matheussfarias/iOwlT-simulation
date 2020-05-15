@@ -10,6 +10,7 @@ from itertools import combinations as comb
 import scipy.signal as scc
 
 soundSpeed = 340.29
+ec=0
 
 def dist (Pi, Pj) : 
     """ Calculate the distance of the arrays Pi and Pj
@@ -42,9 +43,9 @@ def signal (rand, delay, sampleRate, multError = 1, sumError = 0):
     samples = int(sampleRate/2)
     time = np.linspace(0, 0.5, samples)
     noise = np.random.randn(samples)
-    return multError * create_shot(time - delay, samples, rand, 0) + sumError * noise
+    return multError * create_shot(time - delay, samples, rand, ec) + sumError * noise
 
-def signals (rand, delays, sampleRate, multErrors = [], sumErrors = [], echo_remove_boolean = 0):
+def signals (rand, delays, sampleRate, multErrors = [], sumErrors = [], echo_remove_boolean = ec):
     """
         rand : Random vector between 1 and -1 to help the gunshot generator (defined in main)
         delays : 2D column ndarray with the delays between the funcSignal and the received signal in each receptor
@@ -214,7 +215,7 @@ def cost(guess, delays, receptorsPositions, typeComb = "all comb"):
             cost += np.abs(calcDists[i] - h(r1, r2, guess))**2
     return cost
 
-def create_shot (t,samples, rand, echo_boolean=0, echo_gain = np.random.uniform(0.1,0.3)):
+def create_shot (t,samples, rand, echo_boolean=ec, echo_gain = np.random.uniform(0.1,0.3)):
     """ Create a gunshot sound with/without echo
     
         t : 1D linspace array
@@ -286,6 +287,44 @@ def echo_remove(signal, alpha, N):
     result = scc.lfilter(np.array([1]),a,signal)
     return result
 
+def cil2car(r, theta, z):
+    ''' 
+    changes from cylindrical coordinates to Cartesian coordinates
+    obs: theta in radians
+    '''
+    x = r*np.cos(theta)
+    y = r*np.sin(theta)
+    return np.array([x, y, z])
+
+def car2sph(x, y, z):
+    ''' 
+    changes from Cartesian coordinates to spherical coordinates
+    obs: theta, phi in degrees
+    '''
+    if ((x, y, z) == (0, 0, 0)): return np.zeros(3)
+    epsilon = 1e-17 # avoid division by zero
+    
+    R = np.sqrt(x**2 + y**2 + z**2)
+    theta_rad = np.arctan(y/(x + epsilon))
+    phi_rad = np.arccos(z/(R + epsilon))
+    
+    theta = (theta_rad/(2*np.pi)) * 360 
+    phi = (phi_rad/(2*np.pi)) * 360
+    return np.array([R, theta, phi])
+
+def sph2car(R, phi, theta):
+    ''' 
+    changes from spherical coordinates to Cartesian coordinates
+    R : radius
+    phi : azimuth angle in radians
+    theta : elevation angle in radians
+    
+    return ndarray with x,y,z Cartesian coordinates
+    '''
+    x = R*np.sin(theta)*np.cos(phi)
+    y = R*np.sin(theta)*np.sin(phi)
+    z = R*np.cos(theta)
+    return np.array([x, y, z])
 
 
 ############################## AS FUNÇÕES ABAIXO ESTÃO INCOMPLETAS ######################################
