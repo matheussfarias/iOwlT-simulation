@@ -39,7 +39,7 @@ def signal (rand, delay, sampleRate, multError = 1, sumError = 0):
         
         return 1D ndarray with shape (sampleRate/2, ) that represents the delayed signal received
     """
-    assert (delay<0.5 and delay>0)
+    assert (delay<0.5 and delay>=0)
     samples = int(sampleRate/2)
     time = np.linspace(0, 0.5, samples)
     noise = np.random.randn(samples)
