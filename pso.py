@@ -8,8 +8,8 @@ Created on Thu May 21 20:33:41 2020
 
 import numpy as np
 from multilateration_algorithms import *
+import matplotlib.pyplot as plt
 
-quantity = 50
 population = []  
 
 
@@ -17,16 +17,16 @@ sampleRate = 32000
 samples = int(sampleRate/2)
     
 receptorsPositions = np.zeros((4,3))
-receptorsPositions[0] = np.array([1, 1, 0])
-receptorsPositions[1] = np.array([-1, 1, 0])
-receptorsPositions[2] = np.array([1, -1, 0])
-receptorsPositions[3] = np.array([-1, -1, 0])
+receptorsPositions[0] = np.array([np.sqrt(2)/2, np.sqrt(2)/2, 0])
+receptorsPositions[1] = np.array([-np.sqrt(2)/2, np.sqrt(2)/2, 0])
+receptorsPositions[2] = np.array([-np.sqrt(2)/2, -np.sqrt(2)/2, 0])
+receptorsPositions[3] = np.array([-np.sqrt(2)/2, np.sqrt(2)/2, 0])
 
-source = np.array([3,-2, 0])
+source = np.array([-5, -6, -3])
 
 
 maxit = 100
-quantity = 5
+quantity = 50
 w = 1
 c1 = 2
 c2 = 2
@@ -62,12 +62,20 @@ for it in range(0,maxit):
         
         population[i][0] = population[i][0] + population[i][2]
         
+        r = car2sph(population[i][0][0][0],population[i][0][0][1],population[i][0][0][2])
+        if(r[0]>1):
+            population[i][1] = float("inf")
+        else:
+            receptorsPositions[3] = population[i][0]
+            delays, _ = delayEstimator (rand, sampleRate, source, receptorsPositions, typeComb = "")
+            result = MLE_HLS(receptorsPositions, delays, sampleRate)
+            distance = float(dist(result, source))
+            population[i][1] = distance
+            
+        if( (population[i][0]==receptorsPositions[0]).all() or (population[i][0]==receptorsPositions[1]).all() or (population[i][0]==receptorsPositions[2]).all() or (population[i][0]==source).all()):
+            population[i][1] = float("inf")  
         
-        receptorsPositions[3] = population[i][0]
-        delays, _ = delayEstimator (rand, sampleRate, source, receptorsPositions, typeComb = "")
-        result = MLE_HLS(receptorsPositions, delays, sampleRate)
-        distance = float(dist(result, source))
-        population[i][1] = distance
+        
         
         if population[i][1] < population[i][4]:
             population[i][3] = population[i][0]
@@ -81,3 +89,19 @@ for it in range(0,maxit):
     bestcost.append(globalbest[0])
     print("Iteration: {}, Best Cost: {}".format(it, globalbest[0]) )
     w=w*wdamp
+    
+
+receptorsPositions[3] = globalbest[1][0]
+
+array = receptorsPositions
+array_ax = plt.axes(projection='3d')
+array_ax.set_xlim([-1.5, 1.5])
+array_ax.set_xlim([-1.5, 1.5])
+array_ax.set_xlim([-1.5, 1.5])
+array_ax.scatter3D(array[:,0], array[:,1], array[:,2], c='darkblue', depthshade=False , s=40)
+for i in range(array.shape[0]):
+    array_ax.text(array[i,0], array[i,1], array[i,2]+0.1, f"mic {str(i)}", zorder=1)
+plt.title("Disposição espacial dos microfones", fontsize=12)
+plt.show()
+
+    
