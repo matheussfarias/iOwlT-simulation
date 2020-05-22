@@ -13,7 +13,6 @@ import itertools
 
 population = []  
 
-
 sampleRate = 32000
 samples = int(sampleRate/2)
     
@@ -22,6 +21,8 @@ receptorsPositions[0] = np.array([np.sqrt(2)/2, np.sqrt(2)/2, 0])
 receptorsPositions[1] = np.array([-np.sqrt(2)/2, np.sqrt(2)/2, 0])
 receptorsPositions[2] = np.array([-np.sqrt(2)/2, -np.sqrt(2)/2, 0])
 receptorsPositions[3] = np.array([-np.sqrt(2)/2, np.sqrt(2)/2, 0])
+
+receptorsPositions_start = receptorsPositions
 
 
 
@@ -37,16 +38,16 @@ globalbest = [float("inf"), 0]
 bestcost= []
 conta=0
 for i in range (0, quantity):
-    print(i)
-    r = np.random.rand(1)
-    while(r==0 or r>1):
+    for j in range(0,4):
         r = np.random.rand(1)
+        while(r==0 or r>1):
+            r = np.random.rand(1)
 	
-    elevation = np.pi*np.random.rand(1)
-    azimuthe= 2*np.pi*np.random.rand(1)
-    mic = sph2car(r, azimuthe, elevation).reshape((1,3))
-
-    receptorsPositions[3] = mic
+        elevation = np.pi*np.random.rand(1)
+        azimuthe= 2*np.pi*np.random.rand(1)
+        receptorsPositions[j] = sph2car(r, azimuthe, elevation).reshape((1,3))
+    
+    
     distance=0
     R = np.linspace(1,15,15)
     phi = np.linspace(0, 2*np.pi,24, endpoint=False)
@@ -54,7 +55,7 @@ for i in range (0, quantity):
     
     semi_sphere = itertools.product(R, phi, theta)
 
-    for (R, phi, theta) in semi_sphere:
+    '''for (R, phi, theta) in semi_sphere:
 
         source = sph2car(R, phi, theta) + np.random.randn(3)*0.1
         source = np.round(source, decimals=2)
@@ -62,18 +63,17 @@ for i in range (0, quantity):
         rand = (2*np.random.rand(samples) - 1) # Random vector between 1 and -1
         delays, _ = delayEstimator (rand, sampleRate, source, receptorsPositions, typeComb = "")
         result = MLE_HLS(receptorsPositions, delays, sampleRate)
-        distance += float(dist(result, source))
-          
-    population.append([mic, distance, np.zeros((1,3)), mic, distance])
-        
+        distance += float(dist(result, source))'''
+    
+    population.append([receptorsPositions, distance, np.zeros((4,3)), receptorsPositions, distance])
     if population[i][4] < globalbest[0]:
         globalbest[0] = population[i][4]
         globalbest[1] = population[i][3]
       
       
-for it in range(0,maxit):
+'''for it in range(0,maxit):
     for i in range (1, quantity):
-        population[i][2] = w*population[i][2] + np.random.rand(1,3)*c1*(population[i][3]-population[i][0]) + c2*np.random.rand(1,3)*(globalbest[1] - population[i][0])
+        population[i][2] = w*population[i][2] + np.random.rand(4,3)*c1*(population[i][3]-population[i][0]) + c2*np.random.rand(4,3)*(globalbest[1] - population[i][0])
         
         population[i][0] = population[i][0] + population[i][2]
         
@@ -125,4 +125,6 @@ array_ax.scatter3D(array[:,0], array[:,1], array[:,2], c='darkblue', depthshade=
 for i in range(array.shape[0]):
     array_ax.text(array[i,0], array[i,1], array[i,2]+0.1, f"mic {str(i)}", zorder=1)
 plt.title("Disposição espacial dos microfones", fontsize=12)
-plt.show()
+plt.show()'''
+
+    
