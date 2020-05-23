@@ -36,6 +36,8 @@ population = []
 globalbest = [float("inf"), 0]
 bestcost= []
 conta=0
+
+
 for i in range (0, quantity):
     print(i)
     r = np.random.rand(1)
@@ -51,7 +53,6 @@ for i in range (0, quantity):
     R = np.linspace(1,15,15)
     phi = np.linspace(0, 2*np.pi,24, endpoint=False)
     theta = np.linspace(0, np.pi/2, 12, endpoint=True)
-    
     semi_sphere = itertools.product(R, phi, theta)
 
     for (R, phi, theta) in semi_sphere:

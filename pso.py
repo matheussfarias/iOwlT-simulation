@@ -9,8 +9,8 @@ Created on Thu May 21 20:33:41 2020
 import numpy as np
 from multilateration_algorithms import *
 import matplotlib.pyplot as plt
+from mpl_toolkits import mplot3d
 
-population = []  
 
 
 sampleRate = 32000
@@ -22,7 +22,7 @@ receptorsPositions[1] = np.array([-np.sqrt(2)/2, np.sqrt(2)/2, 0])
 receptorsPositions[2] = np.array([-np.sqrt(2)/2, -np.sqrt(2)/2, 0])
 receptorsPositions[3] = np.array([-np.sqrt(2)/2, np.sqrt(2)/2, 0])
 
-source = np.array([-5, -6, -3])
+source = np.array([3, 1, 0])
 
 
 maxit = 100
