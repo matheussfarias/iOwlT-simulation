@@ -202,6 +202,8 @@ arquivo.write("Best Geometry:\n")
 arquivo.write(np.array_str(globalbest[1])+"\n\n")
 
 end= time.time()
+print("Best Scores per Iteration {}".format(bestcost))
+arquivo.write("Best Scores per Iteration: {}\n".format(bestcost))
 print('Time {} s'.format(end-ini))
 arquivo.write('Time {} s\n'.format(end-ini))
 arquivo.close()
