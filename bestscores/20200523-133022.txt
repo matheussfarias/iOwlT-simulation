@@ -1,0 +1,17 @@
+Initial Position:
+[[[ 0.70710678  0.70710678  0.        ]
+  [-0.70710678  0.70710678  0.        ]
+  [-0.70710678 -0.70710678  0.        ]
+  [-0.203      -0.02199     0.24133   ]]]
+
+Iterations: 100
+quantity: 50
+w: 1
+c1: 2
+c2: 2
+wdamp: 0.99
+sampleRate: 32000
+
+
+Best Score: inf
+Best Geometry:

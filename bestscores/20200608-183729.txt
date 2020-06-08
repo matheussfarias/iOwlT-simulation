@@ -1,0 +1,28 @@
+Initial Position:
+[[[0. 0. 0.]
+  [0. 0. 0.]
+  [0. 0. 0.]
+  [0. 0. 0.]]]
+
+Iterations: 50
+population_quant: 10
+individuos: 5
+wmax: 0.9
+wmin: 0.4
+c1: 2
+c2: 2
+sampleRate: 8000
+
+Iteration: 0, Best Cost: [[51.84120079]]
+Iteration: 1, Best Cost: [[51.84120079]]
+Iteration: 2, Best Cost: [[49.26336258]]
+Iteration: 3, Best Cost: [[49.26336258]]
+Iteration: 4, Best Cost: [[49.26336258]]
+Iteration: 5, Best Cost: [[49.26336258]]
+Iteration: 6, Best Cost: [[49.26336258]]
+Iteration: 7, Best Cost: [[49.26336258]]
+Iteration: 8, Best Cost: [[49.26336258]]
+Iteration: 9, Best Cost: [[48.9344897]]
+Iteration: 10, Best Cost: [[48.9344897]]
+Iteration: 11, Best Cost: [[48.9344897]]
+Iteration: 12, Best Cost: [[48.9344897]]

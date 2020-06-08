@@ -1,0 +1,75 @@
+Initial Position:
+[[[0. 0. 0.]
+  [0. 0. 0.]
+  [0. 0. 0.]
+  [0. 0. 0.]]]
+
+Iterations: 50
+population_quant: 5
+individuos: 5
+wmax: 0.9
+wmin: 0.4
+c1: 2
+c2: 2
+sampleRate: 8000
+
+Iteration: 0, Best Cost: [[62.74286023]]
+Iteration: 1, Best Cost: [[62.74286023]]
+Iteration: 2, Best Cost: [[62.69767531]]
+Iteration: 3, Best Cost: [[55.87988932]]
+Iteration: 4, Best Cost: [[55.87988932]]
+Iteration: 5, Best Cost: [[53.94195721]]
+Iteration: 6, Best Cost: [[53.94195721]]
+Iteration: 7, Best Cost: [[53.94195721]]
+Iteration: 8, Best Cost: [[53.94195721]]
+Iteration: 9, Best Cost: [[53.94195721]]
+Iteration: 10, Best Cost: [[53.94195721]]
+Iteration: 11, Best Cost: [[53.94195721]]
+Iteration: 12, Best Cost: [[53.94195721]]
+Iteration: 13, Best Cost: [[53.94195721]]
+Iteration: 14, Best Cost: [[53.94195721]]
+Iteration: 15, Best Cost: [[53.94195721]]
+Iteration: 16, Best Cost: [[53.94195721]]
+Iteration: 17, Best Cost: [[53.94195721]]
+Iteration: 18, Best Cost: [[53.94195721]]
+Iteration: 19, Best Cost: [[53.94195721]]
+Iteration: 20, Best Cost: [[53.94195721]]
+Iteration: 21, Best Cost: [[53.94195721]]
+Iteration: 22, Best Cost: [[53.94195721]]
+Iteration: 23, Best Cost: [[53.94195721]]
+Iteration: 24, Best Cost: [[53.94195721]]
+Iteration: 25, Best Cost: [[53.94195721]]
+Iteration: 26, Best Cost: [[53.94195721]]
+Iteration: 27, Best Cost: [[53.94195721]]
+Iteration: 28, Best Cost: [[53.94195721]]
+Iteration: 29, Best Cost: [[53.94195721]]
+Iteration: 30, Best Cost: [[53.94195721]]
+Iteration: 31, Best Cost: [[53.94195721]]
+Iteration: 32, Best Cost: [[53.94195721]]
+Iteration: 33, Best Cost: [[53.94195721]]
+Iteration: 34, Best Cost: [[53.94195721]]
+Iteration: 35, Best Cost: [[53.94195721]]
+Iteration: 36, Best Cost: [[53.94195721]]
+Iteration: 37, Best Cost: [[53.94195721]]
+Iteration: 38, Best Cost: [[53.94195721]]
+Iteration: 39, Best Cost: [[53.94195721]]
+Iteration: 40, Best Cost: [[53.94195721]]
+Iteration: 41, Best Cost: [[53.94195721]]
+Iteration: 42, Best Cost: [[53.94195721]]
+Iteration: 43, Best Cost: [[53.94195721]]
+Iteration: 44, Best Cost: [[53.94195721]]
+Iteration: 45, Best Cost: [[53.94195721]]
+Iteration: 46, Best Cost: [[53.94195721]]
+Iteration: 47, Best Cost: [[53.94195721]]
+Iteration: 48, Best Cost: [[53.94195721]]
+Iteration: 49, Best Cost: [[53.94195721]]
+
+Best Score: [[53.94195721]]
+Best Geometry:
+[[-0.14455361 -0.00442912 -0.04957233]
+ [-0.51773227 -0.16309368  0.83345152]
+ [-0.05569924 -0.87735887 -0.01729698]
+ [-0.33038194  0.00798119 -0.47929189]]
+
+Best Scores per Iteration: [62.74286023445801, 62.74286023445801, 62.69767531185263, 55.8798893169265, 55.8798893169265, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162, 53.94195720613162]
+Time 71.7328360080719 s

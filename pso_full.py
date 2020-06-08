@@ -26,7 +26,8 @@ if not os.path.exists("bestscores"):
 
 arquivo = open("bestscores/" + date + ".txt", "a")
 
-sampleRate = 4000
+receptorsPositions_start= []
+sampleRate = 16000
 samples = int(sampleRate/2)
 
 print("Initial Position:\n")
@@ -34,37 +35,67 @@ arquivo.write("Initial Position:\n")
 
     
 receptorsPositions = np.zeros((4,3))
-receptorsPositions[0] = np.array([0.42154551, -0.77801156,  0.07249975])
-receptorsPositions[1] = np.array([-0.04487197, -0.02304995,  0.38198168])
-receptorsPositions[2] = np.array([0.00635872, -0.54369001, -0.30237201])
-receptorsPositions[3] = np.array([0.62097167, -0.13719707, -0.23648541])
+receptorsPositions[0] = np.array([np.sqrt(2)/2, np.sqrt(2)/2, 0])
+receptorsPositions[1] = np.array([-np.sqrt(2)/2, np.sqrt(2)/2, 0])
+receptorsPositions[2] = np.array([-np.sqrt(2)/2, -np.sqrt(2)/2, 0])
+receptorsPositions[3] = np.array([-0.2030, -0.02199, 0.24133])
 
-receptorsPositions_start = receptorsPositions
-print(receptorsPositions_start)
-arquivo.write(np.array_str(receptorsPositions_start)+"\n\n")
-'''
-[16.877140107102075,
- array([[-0.18872155, -0.17237658,  0.76836726],
-        [-0.04487197, -0.02304995,  0.38198168],
-        [ 0.00635872, -0.54369001, -0.30237201],
-        [ 0.62097167, -0.13719707, -0.23648541]])]
+temp = receptorsPositions.copy()
+receptorsPositions_start.append(temp)
 
-
-[273.30581585621985,
- array([[ 0.42154551, -0.77801156,  0.07249975],
-        [-0.08168635,  0.81548885, -0.43835588],
-        [-0.1145777 , -0.08060338, -0.31211295],
-        [-0.6041687 , -0.6674966 , -0.24889886]])]
-
-
+#square
 receptorsPositions[0] = np.array([np.sqrt(2)/2, np.sqrt(2)/2, 0])
 receptorsPositions[1] = np.array([np.sqrt(2)/2, -np.sqrt(2)/2, 0])
 receptorsPositions[2] = np.array([-np.sqrt(2)/2, np.sqrt(2)/2, 0])
 receptorsPositions[3] = np.array([-np.sqrt(2)/2, -np.sqrt(2)/2, 0])
-'''
 
-maxit = 3
-quantity = 3
+temp = receptorsPositions.copy()
+receptorsPositions_start.append(temp)
+
+#pyramid
+receptorsPositions[0] = np.array([0, 1, 0])
+receptorsPositions[1] = np.array([-np.sqrt(3)/2, -1/2, 0])
+receptorsPositions[2] = np.array([-np.sqrt(2)/2, np.sqrt(2)/2, 0])
+receptorsPositions[3] = np.array([0, 0, 1])
+
+temp = receptorsPositions.copy()
+receptorsPositions_start.append(temp)
+
+#square 1-shifted
+receptorsPositions[0] = np.array([np.sqrt(2)/2, np.sqrt(2)/2, 0])
+receptorsPositions[1] = np.array([-np.sqrt(2)/2, np.sqrt(2)/2, 0])
+receptorsPositions[2] = np.array([-np.sqrt(2)/2, -np.sqrt(2)/2, 0])
+receptorsPositions[3] = np.array([np.sqrt(2)/4, -np.sqrt(2)/4, np.sqrt(3)/2])
+
+temp = receptorsPositions.copy()
+receptorsPositions_start.append(temp)
+
+#trapezoid
+receptorsPositions[0] = np.array([1/2, np.sqrt(3)/2, 0])
+receptorsPositions[1] = np.array([-1/2, np.sqrt(3)/2, 0])
+receptorsPositions[2] = np.array([-np.sqrt(2)/2, -np.sqrt(2)/2, 0])
+receptorsPositions[3] = np.array([np.sqrt(3)/4, -1/4, np.sqrt(3)/2])
+
+temp = receptorsPositions.copy()
+receptorsPositions_start.append(temp)
+
+#best until now
+receptorsPositions[0] = np.array([-0.36268539, -0.47297163, -0.23418507])
+receptorsPositions[1] = np.array([0.86186511,  0.16530619,  0.28758431])
+receptorsPositions[2] = np.array([0.22206284,  0.21997007, -0.1301347])
+receptorsPositions[3] = np.array([-0.04290313,  0.98427498, -0.15466009])
+
+temp = receptorsPositions.copy()
+receptorsPositions_start.append(temp)
+
+
+print(receptorsPositions_start)
+arquivo.write(np.array_str(np.array(receptorsPositions_start))+"\n\n")
+start= len(receptorsPositions_start)
+
+
+maxit = 100
+quantity = 10
 w = 1
 c1 = 2
 c2 = 2
@@ -89,11 +120,10 @@ globalbest = [float("inf"), 0]
 bestcost= []
 conta=0
 
-
 for i in range (0, quantity):
     print(i)
-    if(i == 0):
-        receptorsPositions = receptorsPositions_start
+    if(i < start):
+        receptorsPositions = receptorsPositions_start[i]
     else:
         for j in range(0,4):
             r = np.random.rand(1)
@@ -106,21 +136,24 @@ for i in range (0, quantity):
     
     
     distance=0
-    R = np.linspace(1,15,6)
-    phi = np.linspace(0, 2*np.pi,6, endpoint=False)
+    R = np.linspace(1,15,15)
+    phi = np.linspace(0, 2*np.pi,12, endpoint=False)
     theta = np.linspace(0, np.pi/2, 6, endpoint=True)
     semi_sphere = itertools.product(R, phi, theta)
     
     for (R, phi, theta) in semi_sphere:
 
-        source = sph2car(R, phi, theta) + np.random.randn(3)*0.1
+        source = sph2car(R, phi, theta) + np.random.randn(3)*0.05
         source = np.round(source, decimals=2)
         
         rand = (2*np.random.rand(samples) - 1) # Random vector between 1 and -1
         delays, _ = delayEstimator (rand, sampleRate, source, receptorsPositions, typeComb = "")
         result = MLE_HLS(receptorsPositions, delays, sampleRate)
-        distance += float(dist(result, source))
+        distance += (dist(result,source))**2
+
+        
     
+    distance = distance/(15*12*6)
     x = receptorsPositions.copy()
     population.append([x, distance, np.zeros((4,3)), x, distance])
     
@@ -128,7 +161,7 @@ for i in range (0, quantity):
         globalbest[0] = population[i][4]
         globalbest[1] = population[i][3]
       
-      
+        
 for it in range(0,maxit):
     for i in range (1, quantity):
         population[i][2] = w*population[i][2] + np.random.rand(4,3)*c1*(population[i][3]-population[i][0]) + c2*np.random.rand(4,3)*(globalbest[1] - population[i][0])
@@ -144,20 +177,21 @@ for it in range(0,maxit):
             population[i][1] = float("inf")
         else:
             receptorsPositions = population[i][0]
-            R = np.linspace(1,15,6)
-            phi = np.linspace(0, 2*np.pi,6, endpoint=False)
+            R = np.linspace(1,15,15)
+            phi = np.linspace(0, 2*np.pi, 12, endpoint=False)
             theta = np.linspace(0, np.pi/2, 6, endpoint=True)
     
             semi_sphere = itertools.product(R, phi, theta)
             distance=0
             for (R, phi, theta) in semi_sphere:
-                source = sph2car(R, phi, theta) + np.random.randn(3)*0.1
+                source = sph2car(R, phi, theta) + np.random.randn(3)*0.05
                 source = np.round(source, decimals=2)
                 
                 delays, _ = delayEstimator (rand, sampleRate, source, receptorsPositions, typeComb = "")
                 result = MLE_HLS(receptorsPositions, delays, sampleRate)
-                distance += float(dist(result, source))
-                
+                distance += (dist(result,source))**2
+            
+            distance = distance/(15*12*6)
             population[i][1] = distance
             
         
@@ -170,7 +204,8 @@ for it in range(0,maxit):
             if population[i][4] < globalbest[0]:
                 globalbest[0] = population[i][4]
                 globalbest[1] = population[i][3]
-                
+
+        
     bestcost.append(globalbest[0])
     print("Iteration: {}, Best Cost: {}".format(it, globalbest[0]) )
     arquivo.write("Iteration: {}, Best Cost: {}\n".format(it, globalbest[0]) )
@@ -199,12 +234,13 @@ print(globalbest[1])
 
 arquivo.write("\nBest Score: {}\n".format(globalbest[0]))
 arquivo.write("Best Geometry:\n")
-arquivo.write(np.array_str(globalbest[1])+"\n\n")
+arquivo.write(np.array_str(np.array(globalbest[1]))+"\n\n")
 
 end= time.time()
 print("Best Scores per Iteration {}".format(bestcost))
 arquivo.write("Best Scores per Iteration: {}\n".format(bestcost))
 print('Time {} s'.format(end-ini))
 arquivo.write('Time {} s\n'.format(end-ini))
+
 arquivo.close()
     

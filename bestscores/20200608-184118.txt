@@ -1,0 +1,15 @@
+Initial Position:
+[[[0. 0. 0.]
+  [0. 0. 0.]
+  [0. 0. 0.]
+  [0. 0. 0.]]]
+
+Iterations: 50
+population_quant: 5
+individuos: 10
+wmax: 0.9
+wmin: 0.4
+c1: 2
+c2: 2
+sampleRate: 8000
+

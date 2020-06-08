@@ -40,14 +40,13 @@ z = np.linspace(0,10,11)
 parallelepiped = itertools.product(x, y, z)
 
 #square (4 microphones)
-square_array = np.zeros((6,3))
+square_array = np.zeros((4,3))
 
-square_array[0] = np.array([0, 0, 1])
+square_array[0] = np.array([-1, 1, 1])
 square_array[1] = np.array([-1, -1, -1])
 square_array[2] = np.array([1, 1, -1])
 square_array[3] = np.array([1, -1, -1])
-square_array[4] = np.array([0, 0, -1])
-square_array[5] = np.array([-1, 1, -1])
+
 
 #piramidal (4 microphones)
 #piramidal (6 microphones)
@@ -95,7 +94,13 @@ theta_10 = []
 theta_20 = []
 theta_error = []
 
-
+total=0
+distance=0
+q4=0
+q3=0
+q2=0
+q1=0
+distancetotal=0
 for (R, phi, theta) in semi_sphere:
     source = sph2car(R, phi, theta) + np.random.randn(3)*0.1
     source = np.round(source, decimals=2)
@@ -109,8 +114,23 @@ for (R, phi, theta) in semi_sphere:
     result = MLE_HLS(square_array, delays, sampleRate)
     sph_source = car2sph(source[0], source[1], source[2])
     sph_result = car2sph(result[0], result[1], result[2])
+    distance = float(dist(result, source))
+    distancetotal+=distance
+    if(distance< 3):
+        q3+=1
+        
+    if(distance< 4):
+        q4+=1
     
+    if(distance< 2):
+        q2+=1
+        
+    if(distance< 1):
+        q1+=1
+        
+        
     error = np.abs(sph_source - sph_result)
+    total+=error
     
     if error[0]<0.05: r_5cm.append(source)
     elif error[0]<0.2: r_20cm.append(source)

@@ -1,0 +1,120 @@
+Initial Position:
+[[[ 0.70710678  0.70710678  0.        ]
+  [-0.70710678  0.70710678  0.        ]
+  [-0.70710678 -0.70710678  0.        ]
+  [-0.203      -0.02199     0.24133   ]]
+
+ [[ 0.70710678  0.70710678  0.        ]
+  [ 0.70710678 -0.70710678  0.        ]
+  [-0.70710678  0.70710678  0.        ]
+  [-0.70710678 -0.70710678  0.        ]]
+
+ [[ 0.          1.          0.        ]
+  [-0.8660254  -0.5         0.        ]
+  [-0.70710678  0.70710678  0.        ]
+  [ 0.          0.          1.        ]]
+
+ [[ 0.70710678  0.70710678  0.        ]
+  [-0.70710678  0.70710678  0.        ]
+  [-0.70710678 -0.70710678  0.        ]
+  [ 0.35355339 -0.35355339  0.8660254 ]]
+
+ [[ 0.5         0.8660254   0.        ]
+  [-0.5         0.8660254   0.        ]
+  [-0.70710678 -0.70710678  0.        ]
+  [ 0.4330127  -0.25        0.8660254 ]]]
+
+Iterations: 100
+quantity: 10
+w: 1
+c1: 2
+c2: 2
+wdamp: 0.99
+sampleRate: 4000
+
+Iteration: 0, Best Cost: 29105.635460432208
+Iteration: 1, Best Cost: 29105.635460432208
+Iteration: 2, Best Cost: 29031.809798375063
+Iteration: 3, Best Cost: 29031.809798375063
+Iteration: 4, Best Cost: 29031.809798375063
+Iteration: 5, Best Cost: 29031.809798375063
+Iteration: 6, Best Cost: 28765.39566127333
+Iteration: 7, Best Cost: 28765.39566127333
+Iteration: 8, Best Cost: 28765.39566127333
+Iteration: 9, Best Cost: 28553.37164834778
+Iteration: 10, Best Cost: 28553.37164834778
+Iteration: 11, Best Cost: 28553.37164834778
+Iteration: 12, Best Cost: 28553.37164834778
+Iteration: 13, Best Cost: 28553.37164834778
+Iteration: 14, Best Cost: 28553.37164834778
+Iteration: 15, Best Cost: 28553.37164834778
+Iteration: 16, Best Cost: 28553.37164834778
+Iteration: 17, Best Cost: 28553.37164834778
+Iteration: 18, Best Cost: 28553.37164834778
+Iteration: 19, Best Cost: 28553.37164834778
+Iteration: 20, Best Cost: 28501.342325553258
+Iteration: 21, Best Cost: 28501.342325553258
+Iteration: 22, Best Cost: 28501.342325553258
+Iteration: 23, Best Cost: 28501.342325553258
+Iteration: 24, Best Cost: 28501.342325553258
+Iteration: 25, Best Cost: 28501.342325553258
+Iteration: 26, Best Cost: 28501.342325553258
+Iteration: 27, Best Cost: 28501.342325553258
+Iteration: 28, Best Cost: 28444.72327208298
+Iteration: 29, Best Cost: 28444.72327208298
+Iteration: 30, Best Cost: 28444.72327208298
+Iteration: 31, Best Cost: 28444.72327208298
+Iteration: 32, Best Cost: 28444.72327208298
+Iteration: 33, Best Cost: 28404.35891320466
+Iteration: 34, Best Cost: 28404.35891320466
+Iteration: 35, Best Cost: 28404.35891320466
+Iteration: 36, Best Cost: 28404.35891320466
+Iteration: 37, Best Cost: 28404.35891320466
+Iteration: 38, Best Cost: 28404.35891320466
+Iteration: 39, Best Cost: 28404.35891320466
+Iteration: 40, Best Cost: 28404.35891320466
+Iteration: 41, Best Cost: 28404.35891320466
+Iteration: 42, Best Cost: 28404.35891320466
+Iteration: 43, Best Cost: 28404.35891320466
+Iteration: 44, Best Cost: 28404.35891320466
+Iteration: 45, Best Cost: 28404.35891320466
+Iteration: 46, Best Cost: 28404.35891320466
+Iteration: 47, Best Cost: 28404.35891320466
+Iteration: 48, Best Cost: 28404.35891320466
+Iteration: 49, Best Cost: 28404.35891320466
+Iteration: 50, Best Cost: 28404.35891320466
+Iteration: 51, Best Cost: 28404.35891320466
+Iteration: 52, Best Cost: 28404.35891320466
+Iteration: 53, Best Cost: 28404.35891320466
+Iteration: 54, Best Cost: 28404.35891320466
+Iteration: 55, Best Cost: 28404.35891320466
+Iteration: 56, Best Cost: 28404.35891320466
+Iteration: 57, Best Cost: 28404.35891320466
+Iteration: 58, Best Cost: 28404.35891320466
+Iteration: 59, Best Cost: 28404.35891320466
+Iteration: 60, Best Cost: 28404.35891320466
+Iteration: 61, Best Cost: 28404.35891320466
+Iteration: 62, Best Cost: 28404.35891320466
+Iteration: 63, Best Cost: 28404.35891320466
+Iteration: 64, Best Cost: 28288.428508365043
+Iteration: 65, Best Cost: 28288.428508365043
+Iteration: 66, Best Cost: 28288.428508365043
+Iteration: 67, Best Cost: 28288.428508365043
+Iteration: 68, Best Cost: 28288.428508365043
+Iteration: 69, Best Cost: 28288.428508365043
+Iteration: 70, Best Cost: 28288.428508365043
+Iteration: 71, Best Cost: 28288.428508365043
+Iteration: 72, Best Cost: 28288.428508365043
+Iteration: 73, Best Cost: 28288.428508365043
+Iteration: 74, Best Cost: 28288.428508365043
+Iteration: 75, Best Cost: 28288.428508365043
+Iteration: 76, Best Cost: 28288.428508365043
+Iteration: 77, Best Cost: 28288.428508365043
+Iteration: 78, Best Cost: 28288.428508365043
+Iteration: 79, Best Cost: 28288.428508365043
+Iteration: 80, Best Cost: 28288.428508365043
+Iteration: 81, Best Cost: 28288.428508365043
+Iteration: 82, Best Cost: 28288.428508365043
+Iteration: 83, Best Cost: 28288.428508365043
+Iteration: 84, Best Cost: 28288.428508365043
+Iteration: 85, Best Cost: 27914.875876640934

@@ -1,0 +1,16 @@
+Initial Position:
+[[[0. 0. 0.]
+  [0. 0. 0.]
+  [0. 0. 0.]
+  [0. 0. 0.]]]
+
+Iterations: 100
+population_quant: 10
+individuos: 20
+wmax: 0.9
+wmin: 0.4
+c1: 2
+c2: 2
+sampleRate: 8000
+
+Iteration: 0, Best Cost: [[71.78926133]]
